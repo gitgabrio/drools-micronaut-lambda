@@ -27,6 +27,7 @@ dependencies {
 
     // Drools
     implementation("org.drools:drools-ruleunits-engine:$droolsVersion")
+    implementation("org.drools:drools-wiring-dynamic:$droolsVersion")
 }
 
 application {

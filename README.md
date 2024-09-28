@@ -90,3 +90,10 @@ Runtime.ExitError
 END RequestId: 00c4bc44-e48e-4e7d-ab38-a47800cd734b
 REPORT RequestId: 00c4bc44-e48e-4e7d-ab38-a47800cd734b  Duration: 6.38 ms   Billed Duration: 7 ms   Memory Size: 1024 MB    Max Memory Used: 3 MB
 ```
+
+# References
+
+Getting started guides:
+
+1. [Micronaut](https://guides.micronaut.io/latest/mn-application-aws-lambda-graalvm-gradle-java.html).
+2. [Drools](https://docs.drools.org/8.39.0.Final/drools-docs/docs-website/drools/getting-started/index.html).
