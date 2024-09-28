@@ -1,16 +1,25 @@
-import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as path from "path"
+import * as cdk from "aws-cdk-lib"
+import { Construct } from "constructs"
+import * as lambda from "aws-cdk-lib/aws-lambda"
 
 export class DroolsLambdaStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
-    super(scope, id, props);
+    super(scope, id, props)
 
-    // The code that defines your stack goes here
+    // Define the path to the Lambda package (either JAR or native binary)
+    const lambdaAssetPath = path.join(
+      __dirname,
+      "../java/build/libs/lambda-0.1-lambda.zip"
+    )
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'DroolsLambdaQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    // Create the Lambda function
+    const javaLambdaFunction = new lambda.Function(this, "JavaLambdaFunction", {
+      runtime: lambda.Runtime.PROVIDED_AL2,
+      handler: "bootstrap", // Change this to your Lambda handler class name
+      code: lambda.Code.fromAsset(lambdaAssetPath),
+      memorySize: 1024, // Adjust memory size as needed
+      timeout: cdk.Duration.seconds(15), // Adjust the timeout as needed
+    })
   }
 }

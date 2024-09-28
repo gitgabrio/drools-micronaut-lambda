@@ -41,6 +41,22 @@ micronaut {
     }
 }
 
+// Arguments when building the graalvm binary
+graalvmNative {
+  binaries {
+    main {
+      // Disable optimisations during testing
+      buildArgs.add("-Ob")
+      buildArgs.add("--initialize-at-build-time=org.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer")
+      // Statically link our application so we can produce a zip file
+      //buildArgs.add('--static')
+      // Use musl to statically link our application
+      //buildArgs.add('--libc=musl')
+      //buildArgs.add('-H:CCompilerOption=-I/usr/include/musl')
+      //buildArgs.add('-H:CCompilerOption=-L/usr/lib64')
+    }
+  }
+}
 
 tasks.named("dockerfileNative") {
     baseImage = "amazonlinux:2023"
