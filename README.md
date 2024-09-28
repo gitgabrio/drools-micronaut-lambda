@@ -4,24 +4,44 @@ Example of a Micronaut Java lambda which uses Drools.
 
 # Requirements
 
-You need node 20 and aws cdk:
+You need node 20 somehow. Probably best to install with your sytem
+package manager, or use nvm.
+
+Then you need aws cdk:
 
 ```
 npm install -g aws-cdk
 ```
 
-Bootstrap your AWS account if you haven't done so:
+Bootstrap your AWS account if you haven't done so (you will need to
+have setup your access credentials):
 
 ```
 cdk bootstrap
 ```
 
-Java was installed using sdkman.
+Java was installed using sdkman:
 
 ```
 sdk install java 21.0.2-graalce
 sdk install micronaut
 ```
+
+# Build
+
+Build lambda:
+
+```
+npm run build-native-lambda
+```
+
+Deploy the project:
+
+```
+cdk deploy
+```
+
+This installs in us-east-1 by default.
 
 # How the project was created
 
