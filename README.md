@@ -47,6 +47,13 @@ This installs in us-east-1 by default.
 
 # Test
 
+```json
+{
+  "id": "color",
+  "val": "red"
+}
+```
+
 # How the project was created
 
 ```

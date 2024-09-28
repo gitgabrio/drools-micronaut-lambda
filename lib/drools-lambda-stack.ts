@@ -14,12 +14,17 @@ export class DroolsLambdaStack extends cdk.Stack {
     )
 
     // Create the Lambda function
-    const javaLambdaFunction = new lambda.Function(this, "JavaLambdaFunction", {
-      runtime: lambda.Runtime.PROVIDED_AL2,
-      handler: "bootstrap", // Change this to your Lambda handler class name
-      code: lambda.Code.fromAsset(lambdaAssetPath),
-      memorySize: 1024, // Adjust memory size as needed
-      timeout: cdk.Duration.seconds(15), // Adjust the timeout as needed
-    })
+    const javaLambdaFunction = new lambda.Function(
+      this,
+      "MicronautDroolsLambdaFunction",
+      {
+        functionName: "micronaut-drools",
+        runtime: lambda.Runtime.PROVIDED_AL2,
+        handler: "bootstrap", // Change this to your Lambda handler class name
+        code: lambda.Code.fromAsset(lambdaAssetPath),
+        memorySize: 1024, // Adjust memory size as needed
+        timeout: cdk.Duration.seconds(15), // Adjust the timeout as needed
+      }
+    )
   }
 }
