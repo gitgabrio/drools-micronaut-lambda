@@ -74,7 +74,6 @@ tasks.named("dockerfileNative") {
     )
     // Change dockerfile to install musl
     editDockerfile {
-        //after('RUN /usr/lib/graalvm/bin/gu install native-image') {
         after('RUN tar -zxf /tmp/graalvm-jdk-21_linux-x64_bin.tar.gz -C /tmp && ls -d /tmp/graalvm-jdk-21* | grep -v "tar.gz" | xargs -I_ mv _ /usr/lib/graalvm') {
             insert('RUN ln -s /usr/local/bin/musl-gcc /usr/local/bin/x86_64-linux-musl-gcc')
             insert('RUN curl --silent -L https://musl.libc.org/releases/musl-1.2.5.tar.gz -o /tmp/musl-1.2.5.tar.gz && tar -zxf /tmp/musl-1.2.5.tar.gz -C /tmp && cd /tmp/musl-1.2.5 && ./configure --bindir=/usr/local/bin &> /dev/null && make --silent && make install')

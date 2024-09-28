@@ -16,9 +16,44 @@ Java was installed using [sdkman](https://sdkman.io/):
 sdk install java 21.0.2-graalce
 ```
 
+# Repeat the problem without deploying the stack
+
+You can repeat the problem easily by running the nativeTest task:
+
+```
+cd java
+./gradlew nativeTest
+```
+
+Produces a very similar output as running the actual lambda:
+
+```
+Micronaut version: 4.6.5
+input: {"id":"color","val":"red"}
+example.micronaut.FunctionRequestHandlerTest > testHandler() FAILED
+
+
+Failures (1):
+  JUnit Jupiter:FunctionRequestHandlerTest:testHandler()
+    MethodSource [className = 'example.micronaut.FunctionRequestHandlerTest', methodName = 'testHandler', methodParameterTypes = '']
+    => java.lang.RuntimeException: java.lang.NoSuchFieldException: SUPPLIER
+       org.drools.compiler.kie.builder.impl.KieBuilderImpl.buildAll(KieBuilderImpl.java:207)
+       org.drools.compiler.kie.builder.impl.KieBuilderImpl.getKieModule(KieBuilderImpl.java:515)
+       org.drools.compiler.kie.builder.impl.KieBuilderImpl.getKieModule(KieBuilderImpl.java:505)
+       org.drools.ruleunits.impl.RuleUnitProviderImpl.createRuleUnitKieModule(RuleUnitProviderImpl.java:115)
+       org.drools.ruleunits.impl.RuleUnitProviderImpl.generateRuleUnit(RuleUnitProviderImpl.java:83)
+       [...]
+     Caused by: java.lang.NoSuchFieldException: SUPPLIER
+       java.base@21.0.2/java.lang.Class.checkField(DynamicHub.java:1041)
+       java.base@21.0.2/java.lang.Class.getField(DynamicHub.java:1026)
+       org.drools.compiler.kie.builder.impl.KieBuilderImpl.getSupplier(KieBuilderImpl.java:212)
+       org.drools.compiler.kie.builder.impl.KieBuilderImpl.buildAll(KieBuilderImpl.java:204)
+       [...]
+```
+
 # Install
 
-Install packages:
+To actully deploy the lambda, first install the node packages:
 
 ```sh
 npm install
