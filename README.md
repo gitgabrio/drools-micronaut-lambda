@@ -35,13 +35,17 @@ Build lambda:
 npm run build-native-lambda
 ```
 
-Deploy the project:
+# Deploy
+
+Deploy your CDK stack:
 
 ```
 cdk deploy
 ```
 
 This installs in us-east-1 by default.
+
+# Test
 
 # How the project was created
 

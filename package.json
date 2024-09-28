@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "jest",
+    "test": "cd java && ./gradlew test",
     "cdk": "cdk",
     "build-native-lambda": "cd java && ./gradlew buildNativeLambda"
   },
