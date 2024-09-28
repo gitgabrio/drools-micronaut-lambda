@@ -10,7 +10,7 @@ This currently does not work.
 You need node 20 somehow. Probably best to install with your sytem
 package manager, or use [nvm](https://github.com/nvm-sh/nvm).
 
-Java was installed using sdkman:
+Java was installed using [sdkman](https://sdkman.io/):
 
 ```
 sdk install java 21.0.2-graalce
@@ -33,7 +33,7 @@ npm run cdk bootstrap
 
 # Build
 
-Build lambda:
+Build the Java native lambda:
 
 ```sh
 npm run build-native-lambda
@@ -79,10 +79,32 @@ Output:
 TART RequestId: 5360ede4-0087-4f12-9724-1d9d4c9ea351 Version: $LATEST
 Micronaut version: 4.6.5
 input: {}
-Invocation with requestId [5360ede4-0087-4f12-9724-1d9d4c9ea351] failed: java.lang.NoSuchFieldException: SUPPLIERjava.lang.RuntimeException: java.lang.NoSuchFieldException: SUPPLIER
+Invocation with requestId [5360ede4-0087-4f12-9724-1d9d4c9ea351] failed: java.lang.NoSuchFieldException: SUPPLIER
+java.lang.RuntimeException: java.lang.NoSuchFieldException: SUPPLIER
 at org.drools.compiler.kie.builder.impl.KieBuilderImpl.buildAll(KieBuilderImpl.java:207)
 at org.drools.compiler.kie.builder.impl.KieBuilderImpl.getKieModule(KieBuilderImpl.java:515)
-...
+at org.drools.compiler.kie.builder.impl.KieBuilderImpl.getKieModule(KieBuilderImpl.java:505)
+at org.drools.ruleunits.impl.RuleUnitProviderImpl.createRuleUnitKieModule(RuleUnitProviderImpl.java:115)
+at org.drools.ruleunits.impl.RuleUnitProviderImpl.generateRuleUnit(RuleUnitProviderImpl.java:83)
+at org.drools.ruleunits.dsl.RuleUnitProviderForDSL.generateRuleUnit(RuleUnitProviderForDSL.java:55)
+at org.drools.ruleunits.impl.RuleUnitProviderImpl.getRuleUnit(RuleUnitProviderImpl.java:78)
+at org.drools.ruleunits.api.RuleUnitProvider.createRuleUnitInstance(RuleUnitProvider.java:41)
+at example.micronaut.FunctionRequestHandler.execute(FunctionRequestHandler.java:31)
+at example.micronaut.FunctionRequestHandler.execute(FunctionRequestHandler.java:16)
+at io.micronaut.function.aws.MicronautRequestHandler.handleRequest(MicronautRequestHandler.java:110)
+at io.micronaut.function.aws.runtime.AbstractMicronautLambdaRuntime.handleInvocationForRequestHandler(AbstractMicronautLambdaRuntime.java:445)
+at io.micronaut.function.aws.runtime.AbstractMicronautLambdaRuntime.startRuntimeApiEventLoop(AbstractMicronautLambdaRuntime.java:407)
+at io.micronaut.function.aws.runtime.AbstractMicronautLambdaRuntime.run(AbstractMicronautLambdaRuntime.java:167)
+at example.micronaut.FunctionLambdaRuntime.main(FunctionLambdaRuntime.java:12)
+at java.base@21.0.4/java.lang.invoke.LambdaForm$DMH/sa346b79c.invokeStaticInit(LambdaForm$DMH)
+Caused by: java.lang.NoSuchFieldException: SUPPLIER
+at java.base@21.0.4/java.lang.Class.checkField(DynamicHub.java:1044)
+at java.base@21.0.4/java.lang.Class.getField(DynamicHub.java:1029)
+at org.drools.compiler.kie.builder.impl.KieBuilderImpl.getSupplier(KieBuilderImpl.java:212)
+at org.drools.compiler.kie.builder.impl.KieBuilderImpl.buildAll(KieBuilderImpl.java:204)
+... 15 more
+END RequestId: 5360ede4-0087-4f12-9724-1d9d4c9ea351
+REPORT RequestId: 5360ede4-0087-4f12-9724-1d9d4c9ea351  Duration: 2.62 ms       Billed Duration: 3 ms     Memory Size: 1024 MB    Max Memory Used: 74 MB
 ```
 
 Or via the AWS console, find the "micronaut-drools" lambda, and on the
