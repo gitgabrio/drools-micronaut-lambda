@@ -130,12 +130,17 @@ sdk install micronaut
 Then create the initial Java code:
 
 ```sh
+mkdir drools-example
+cd drools-example
 cdk init app --language=typescript
 mn create-function-app example.micronaut.lambda \
-                      --features=aws-lambda,graalvm \
-                      --build=gradle \
-                      --jdk=21
+  --features=aws-lambda,graalvm \
+  --build=gradle \
+  --jdk=21
+mv lambda java
 ```
+
+Then copying in the [getting started Drools example](https://docs.drools.org/8.39.0.Final/drools-docs/docs-website/drools/getting-started/index.html).
 
 ## Useful commands
 
