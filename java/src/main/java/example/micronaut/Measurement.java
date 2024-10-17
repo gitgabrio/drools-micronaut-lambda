@@ -1,8 +1,6 @@
 package example.micronaut;
 
-import io.micronaut.serde.annotation.Serdeable;
-
-@Serdeable
+//@Serdeable
 public class Measurement {
     private String id;
     private String val;

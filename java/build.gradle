@@ -27,7 +27,7 @@ dependencies {
 
     // Drools
     implementation("org.drools:drools-ruleunits-engine:$droolsVersion")
-    implementation("org.drools:drools-wiring-dynamic:$droolsVersion")
+    //implementation("org.drools:drools-wiring-dynamic:$droolsVersion")
 }
 
 application {
@@ -63,6 +63,16 @@ graalvmNative {
     }
   }
 }
+
+tasks.register("invokeDroolsMavenPlugin", Exec) {
+        commandLine "mvn", "clean", "org.kie:kie-maven-plugin:8.44.0.Final:build"
+}
+
+//tasks.register(Exec, "invokeDroolsMavenPlugin") {
+//    workingDir rootProject.getProjectDir().getAbsolutePath() + "/graph-gen"
+//    commandLine "mvn", "clean"
+//}
+
 
 tasks.named("dockerfileNative") {
     baseImage = "amazonlinux:2023"
